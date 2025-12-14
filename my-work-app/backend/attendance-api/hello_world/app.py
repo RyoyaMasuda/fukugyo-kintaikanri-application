@@ -6,7 +6,7 @@ from mangum import Mangum
 from pydantic import BaseModel
 from boto3.dynamodb.conditions import Key
 
-app = FastAPI()
+app = FastAPI(root_path="/Prod")
 
 app.add_middleware(
     CORSMiddleware,
