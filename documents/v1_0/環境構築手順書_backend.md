@@ -12,6 +12,142 @@ FastAPI (Python) を使用してAPIを作成し、AWS SAM を使って AWS Lambd
 
 ---
 
+## 【前提条件】 必要なツールのインストールと設定
+
+### 1. Pythonのインストール確認
+
+Python 3.9以上がインストールされていることを確認します。
+
+コマンド:
+
+```bash
+python3 --version
+```
+
+または
+
+```bash
+python --version
+```
+
+※Pythonがインストールされていない場合は、[Python公式サイト](https://www.python.org/downloads/)からインストールしてください。
+
+### 2. AWS CLIのインストール
+
+AWS CLIがインストールされていることを確認します。
+
+コマンド:
+
+```bash
+aws --version
+```
+
+※AWS CLIがインストールされていない場合:
+
+**macOS (Homebrew使用):**
+
+```bash
+brew install awscli
+```
+
+**macOS (インストーラー使用):**
+
+```bash
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+
+**Linux:**
+
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+
+**Windows:**
+
+[公式インストーラー](https://awscli.amazonaws.com/AWSCLIV2.msi)をダウンロードして実行してください。
+
+### 3. AWS CLIの設定
+
+AWS認証情報を設定します。
+
+コマンド:
+
+```bash
+aws configure
+```
+
+以下の情報を入力します：
+
+- AWS Access Key ID: (AWSコンソールで取得したアクセスキー)
+- AWS Secret Access Key: (AWSコンソールで取得したシークレットキー)
+- Default region name: `ap-northeast-1` (または使用したいリージョン)
+- Default output format: `json`
+
+※AWS認証情報の取得方法:
+1. AWSコンソールにログイン
+2. 右上のユーザー名をクリック → 「セキュリティ認証情報」
+3. 「アクセスキー」セクションで「アクセスキーを作成」をクリック
+
+### 4. SAM CLIのインストール
+
+AWS SAM CLIがインストールされていることを確認します。
+
+コマンド:
+
+```bash
+sam --version
+```
+
+※SAM CLIがインストールされていない場合:
+
+**macOS (Homebrew使用):**
+
+```bash
+brew install aws-sam-cli
+```
+
+**macOS (インストーラー使用):**
+
+```bash
+brew tap aws/tap
+brew install aws-sam-cli
+```
+
+**Linux:**
+
+```bash
+wget https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+sudo ./sam-installation/install
+```
+
+**Windows:**
+
+```powershell
+# Chocolateyを使用する場合
+choco install aws-sam-cli
+
+# または、インストーラーをダウンロード
+# https://github.com/aws/aws-sam-cli/releases から最新版をダウンロード
+```
+
+### 5. SAM CLIの動作確認
+
+インストールが正しく完了したか確認します。
+
+コマンド:
+
+```bash
+sam --version
+```
+
+正常にインストールされていれば、バージョン番号が表示されます。
+
+---
+
 ## 【手順1】 プロジェクトの作成と初期化
 
 1. バックエンド用のフォルダを作成して移動します。
